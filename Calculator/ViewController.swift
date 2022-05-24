@@ -33,7 +33,7 @@ class ViewController: UIViewController {
 //Calculation button
     @IBAction func Claculate(_ sender: UIButton) {
         if Screen.text != "" && sender.tag != 15 && sender.tag != 16{
-        previousOperand = Double(Screen.text!)!
+            previousOperand = Double(Screen.text!) ?? currentOperand
         //Divide
         if sender.tag == 11 {
             Screen.text = "/"

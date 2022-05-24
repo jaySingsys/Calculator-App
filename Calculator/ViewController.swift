@@ -14,7 +14,9 @@ class ViewController: UIViewController {
     var operation = 0
     //Label
     @IBOutlet weak var Screen: UILabel!
-    
+    @IBAction func terminateApp(_ sender: UIButton) {
+       exit(0)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -24,7 +26,7 @@ class ViewController: UIViewController {
         if calculation == true {
         Screen.text = String(sender.tag)
             currentOperand = Double(Screen.text!)!
-            calculation = true
+            calculation = false
         } else {
         Screen.text = Screen.text! + String(sender.tag)
             currentOperand = Double(Screen.text!)!
@@ -32,8 +34,8 @@ class ViewController: UIViewController {
     }
 //Calculation button
     @IBAction func Claculate(_ sender: UIButton) {
-        if Screen.text != "" && sender.tag != 15 && sender.tag != 16{
-            previousOperand = Double(Screen.text!) ?? previousOperand
+        if Screen.text != "" && sender.tag != 15{
+            previousOperand = Double(Screen.text!) ?? currentOperand
         //Divide
         if sender.tag == 11 {
             Screen.text = "/"

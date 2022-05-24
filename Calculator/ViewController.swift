@@ -75,7 +75,7 @@ class ViewController: UIViewController {
         }
         }
 // Reset Screen
-        else if sender.tag == 16{
+        if sender.tag == 16{
         Screen.text = ""
         previousOperand = 0;
         currentOperand = 0;

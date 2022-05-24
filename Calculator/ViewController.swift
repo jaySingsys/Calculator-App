@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         if calculation == true {
         Screen.text = String(sender.tag)
             currentOperand = Double(Screen.text!)!
-            calculation = false
+            calculation = true
         } else {
         Screen.text = Screen.text! + String(sender.tag)
             currentOperand = Double(Screen.text!)!
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
 //Calculation button
     @IBAction func Claculate(_ sender: UIButton) {
         if Screen.text != "" && sender.tag != 15 && sender.tag != 16{
-            previousOperand = Double(Screen.text!) ?? currentOperand
+            previousOperand = Double(Screen.text!) ?? previousOperand
         //Divide
         if sender.tag == 11 {
             Screen.text = "/"

@@ -10,8 +10,12 @@ class ViewController: UIViewController {
     //Properties
     var currentOperand:Double = 0
     var previousOperand:Double = 0
-    var calculation = true
+    var typing = true
     var operation = 0
+    var result:Double = 0
+    var resultCompare:Double = 0
+    var numberOnScreen = ""
+    
     //Label
     @IBOutlet weak var Screen: UILabel!
     @IBAction func terminateApp(_ sender: UIButton) {
@@ -23,63 +27,80 @@ class ViewController: UIViewController {
     }
 //Numbers button
     @IBAction func numbersButton(_ sender: UIButton) {
-        if calculation == true {
-        Screen.text = String(sender.tag)
+        if typing == true {
+            Screen.text = String(sender.tag)
             currentOperand = Double(Screen.text!)!
-            calculation = false
-        } else {
-        Screen.text = Screen.text! + String(sender.tag)
-            currentOperand = Double(Screen.text!)!
+            typing = false
+        } else{
+            Screen.text = Screen.text! + String(sender.tag)
+            currentOperand = Double(Screen.text!) ?? Double(sender.tag)
+            //        } else if typing == false && previousOperand == result{
+//            currentOperand = result
         }
     }
 //Calculation button
     @IBAction func Claculate(_ sender: UIButton) {
         if Screen.text != "" && sender.tag != 15{
-            previousOperand = Double(Screen.text!) ?? currentOperand
-        //Divide
-        if sender.tag == 11 {
-            Screen.text = "/"
-        }
-        //Multiply
-        if sender.tag == 12 {
-        Screen.text = "x"
-        }
-        //Add
-        if sender.tag == 13 {
-        Screen.text = "+"
-        }
-       //Subtract
-        if sender.tag == 14 {
-        Screen.text = "-"
-        }
+            previousOperand = Double(Screen.text!) ?? result
+               //Divide
+               if sender.tag == 11 {
+                Screen.text = Screen.text! +  "/"
+                typing = false
+               }
+               //Multiply
+               if sender.tag == 12 {
+               Screen.text = Screen.text! + "x"
+                typing = false
+               }
+               //Add
+               if sender.tag == 13 {
+               Screen.text = Screen.text! +  "+"
+              typing = false
+               }
+              //Subtract
+               if sender.tag == 14 {
+               Screen.text = "-"
+                typing = false
+               }
+               
 //Assinging Coming tag to Variable operation
         operation = sender.tag
-        calculation = true;
+        typing = false
         }else if sender.tag == 15 {
             //Divide
         if operation == 11{
-        Screen.text = String(previousOperand / currentOperand)
+            Screen.text = "\(Screen.text!) = \(String(previousOperand / currentOperand))"
+            result = previousOperand / currentOperand
+            
         }
+        
         //Multiply
-        else if operation == 12{
-        Screen.text = String(previousOperand * currentOperand)
+        else if operation == 12 {
+            Screen.text = "\(Screen.text!) = \(String(previousOperand * currentOperand))"
+            result = previousOperand * currentOperand
         }
         //Add
         else if operation == 13{
 
-        Screen.text = String(previousOperand + currentOperand)
+        Screen.text = "\(Screen.text!) = \(String(previousOperand + currentOperand))"
+        result = previousOperand + currentOperand
+            
         }
         //Subtract
         else if operation == 14{
-        Screen.text = String(previousOperand - currentOperand)
+            Screen.text = "\(Screen.text!) = \(String(previousOperand - currentOperand))"
+            result = previousOperand - currentOperand
         }
         }
+        
 // Reset Screen
         if sender.tag == 16{
         Screen.text = ""
-        previousOperand = 0;
-        currentOperand = 0;
-        operation = 0;
+        previousOperand = 0
+        currentOperand = 0
+        operation = 0
+        result = 0
         }
     }
   }
+

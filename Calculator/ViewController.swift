@@ -13,9 +13,6 @@ class ViewController: UIViewController {
     var typing = true
     var operation = 0
     var result:Double = 0
-    var resultCompare:Double = 0
-    var numberOnScreen = ""
-    
     //Label
     @IBOutlet weak var Screen: UILabel!
     @IBAction func terminateApp(_ sender: UIButton) {
@@ -34,8 +31,6 @@ class ViewController: UIViewController {
         } else{
             Screen.text = Screen.text! + String(sender.tag)
             currentOperand = Double(Screen.text!) ?? Double(sender.tag)
-            //        } else if typing == false && previousOperand == result{
-//            currentOperand = result
         }
     }
 //Calculation button
@@ -59,10 +54,9 @@ class ViewController: UIViewController {
                }
               //Subtract
                if sender.tag == 14 {
-               Screen.text = "-"
+                Screen.text = Screen.text! +  "-"
                 typing = false
                }
-               
 //Assinging Coming tag to Variable operation
         operation = sender.tag
         typing = false
@@ -71,28 +65,29 @@ class ViewController: UIViewController {
         if operation == 11{
             Screen.text = "\(Screen.text!) = \(String(previousOperand / currentOperand))"
             result = previousOperand / currentOperand
-            
+            Screen.text = String(result)
         }
-        
         //Multiply
         else if operation == 12 {
             Screen.text = "\(Screen.text!) = \(String(previousOperand * currentOperand))"
             result = previousOperand * currentOperand
+            Screen.text = String(result)
         }
         //Add
         else if operation == 13{
 
         Screen.text = "\(Screen.text!) = \(String(previousOperand + currentOperand))"
         result = previousOperand + currentOperand
-            
+        Screen.text = String(result)
+      
         }
         //Subtract
         else if operation == 14{
             Screen.text = "\(Screen.text!) = \(String(previousOperand - currentOperand))"
             result = previousOperand - currentOperand
+            Screen.text = String(result)
         }
         }
-        
 // Reset Screen
         if sender.tag == 16{
         Screen.text = ""
@@ -103,4 +98,5 @@ class ViewController: UIViewController {
         }
     }
   }
+// Back button
 
